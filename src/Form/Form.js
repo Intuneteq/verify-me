@@ -4,33 +4,36 @@ import axios from "axios";
 import "./Form.css";
 
 const Form = () => {
-  const url = "https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001";
+  const url =
+    "https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001";
   const testSecret = process.env.REACT_APP_TEST_SECRET_KEY;
   //   const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhoneNumber] = useState("");
   const [dob, setDob] = useState("");
-  const [license, setLicense] = useState("");
+  // const [license, setLicense] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(firstname, lastname, phone, dob);
 
     axios
       .post(
         url,
         {
-          firstName,
-          lastName,
-          phoneNumber,
-          dob,
-          license
-        },
-        {
           headers: {
             "Authorization": `Bearer ${testSecret}`,
           },
+        },
+        {
+          firstname,
+          lastname,
+          phone,
+          dob,
+          // license
         }
       )
       .then((res) => {
@@ -92,7 +95,7 @@ const Form = () => {
             />
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-25">
             <label htmlFor="license">Driver's License</label>
           </div>
@@ -103,7 +106,7 @@ const Form = () => {
               onChange={(e) => setLicense(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <input type="submit" value="search" onClick={handleSubmit} />
         </div>
