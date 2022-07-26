@@ -4,38 +4,41 @@ import axios from "axios";
 import "./Form.css";
 
 const Form = () => {
-  const url = "https://vapi.verifyme.ng";
+  const url = "https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001";
   const testSecret = process.env.REACT_APP_TEST_SECRET_KEY;
-//   const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
+  //   const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
 
-  const [chasis, setChasis] = useState("");
-  const [plateNumber, setPlateNumber] = useState("");
-  const [itemNumber, setItemNumber] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [dob, setDob] = useState("");
+  const [license, setLicense] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(chasis, plateNumber, itemNumber);
 
     axios
       .post(
         url,
         {
-          chasis,
-          plateNumber,
-          itemNumber,
+          firstName,
+          lastName,
+          phoneNumber,
+          dob,
+          license
         },
         {
           headers: {
-            Authorization: `Bearer ${testSecret}`,
+            "Authorization": `Bearer ${testSecret}`,
           },
         }
       )
       .then((res) => {
         console.log(res.data);
-      }).catch((error) => {
-          console.log(error);
       })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -43,37 +46,61 @@ const Form = () => {
       <form action="action_page.php">
         <div className="row">
           <div className="col-25">
-            <label htmlFor="fname">Chasis Number</label>
+            <label htmlFor="fname">First Name</label>
           </div>
           <div className="col-75">
             <input
-              type="number"
-              name="chasis"
-              onChange={(e) => setChasis(e.target.value)}
+              type="text"
+              name="fname"
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-25">
-            <label htmlFor="lname">Plate Number</label>
+            <label htmlFor="lname">Last Name</label>
           </div>
           <div className="col-75">
             <input
-              type="number"
-              name="plate"
-              onChange={(e) => setPlateNumber(e.target.value)}
+              type="text"
+              name="lname"
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-25">
-            <label htmlFor="lname">Item Number</label>
+            <label htmlFor="phnum">Phone Number</label>
           </div>
           <div className="col-75">
             <input
               type="number"
               name="item"
-              onChange={(e) => setItemNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-25">
+            <label htmlFor="DOB">Date of Birth</label>
+          </div>
+          <div className="col-75">
+            <input
+              type="date"
+              name="DOB"
+              onChange={(e) => setDob(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-25">
+            <label htmlFor="license">Driver's License</label>
+          </div>
+          <div className="col-75">
+            <input
+              type="number"
+              name="license"
+              onChange={(e) => setLicense(e.target.value)}
             />
           </div>
         </div>
