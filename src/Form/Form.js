@@ -4,27 +4,27 @@ import axios from "axios";
 import "./Form.css";
 
 const Form = () => {
-  const url =
-    "https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001";
+  const url = 'https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001';
   const testSecret = process.env.REACT_APP_TEST_SECRET_KEY;
-  //   const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
+    // const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhoneNumber] = useState("");
   const [dob, setDob] = useState("");
-  // const [license, setLicense] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log(firstname, lastname, phone, dob);
+    console.log('url', url);
 
     axios
       .post(
         url,
         {
           headers: {
+            'Content-Type': 'application/json',
             "Authorization": `Bearer ${testSecret}`,
           },
         },
@@ -33,7 +33,6 @@ const Form = () => {
           lastname,
           phone,
           dob,
-          // license
         }
       )
       .then((res) => {
