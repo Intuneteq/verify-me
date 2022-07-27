@@ -4,10 +4,9 @@ import axios from "axios";
 import "./Form.css";
 
 const Form = () => {
-  const url = 'https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001';
-  const testSecret = process.env.REACT_APP_TEST_SECRET_KEY;
-    // const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
-
+  // const url = 'https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001';
+  // const testSecret = process.env.REACT_APP_TEST_SECRET_KEY;
+  // const liveSecret = process.env.REACT_APP_LIVE_SECRET_KEY;
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhoneNumber] = useState("");
@@ -16,27 +15,26 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(firstname, lastname, phone, dob);
-    console.log('url', url);
+    // console.log(firstname, lastname, phone, dob);
+    // console.log('url', url);
 
     axios
       .post(
-        url,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${testSecret}`,
-          },
-        },
+        `https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001`,
         {
           firstname,
           lastname,
           phone,
           dob,
-        }
+        },
+        {
+          headers: {
+            "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjk4MzExLCJlbnYiOiJ0ZXN0IiwiaWF0IjoxNjU2NjAyNDU3fQ.8id8p31RLWmMI4e9mBE9fRj7ghjHjy3vBGwWh3zCquM`,
+          },
+        },
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.log(error);
