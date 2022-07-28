@@ -4,6 +4,8 @@
   align-items: flex-start;
   justify-content: center;
   border-radius: 10px;
+  // border: 1px solid red;
+  max-width: 1200px;
 
   form {
     flex: 1;
@@ -22,7 +24,7 @@
       text-align: center;
       width: 100%;
       font-weight: 500;
-      font-size: 30px;
+      font-size: 2rem;
       margin-bottom: 5px;
 
       @media screen and (max-width: 500px) {
@@ -147,17 +149,35 @@
     }
   }
 
-  p {
-    margin-bottom: 30px;
+  section {
+    display: flex;
+    width: 60%;
+    margin: 20px auto;
+    justify-content: space-between;
+    align-items: center;
     span {
-      font-weight: 800;
+      font-weight: 400;
+      text-transform: capitalize;
+    }
+    .field {
+      font-weight: 600;
       text-transform: uppercase;
     }
   }
 
-  @media screen and (max-width: 550px) {
+  // @media screen and (max-width: 900px) {
+  //   section {
+  //     width: 100%;
+  //   }
+  // }
+
+  @media screen and (max-width: 900px) {
     width: 80%;
     border-radius: 10px;
+
+    section{
+       width: 100%;
+    }
 
     img {
       width: 50%;
@@ -187,7 +207,7 @@
 
     h1 {
       text-align: center;
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-weight: 400;
       color: var(--black-color);
     }

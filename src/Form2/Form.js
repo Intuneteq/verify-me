@@ -51,7 +51,7 @@ const Form = () => {
         toast.error("Failed to Fetch Information");
       });
   };
-
+  
   return (
     <div className="form-container">
       <form>
@@ -100,10 +100,10 @@ const Form = () => {
             <BsFillCalendarDateFill />
           </span>
           <input
-            type="text"
+            type="date"
             placeholder="DD-MM-YYYY"
             maxLength="10"
-            onChange={(e) => setDob(e.target.value)}
+            onChange={(e) => setDob(console.log(e.target.value.toString()))}
           />
         </label>
 
@@ -121,33 +121,42 @@ const Form = () => {
             <div>
               <img src={illustratehead} alt="alt" />
             </div>
-            <p>
-              FIRST NAME: <span>{items.firstname}</span>
-            </p>
-            <p>
-              LAST NAME: <span>{items.lastname}</span>
-            </p>
-            <p>
-              MIDDLE NAME: <span>{items.middlename}</span>
-            </p>
-            <p>
-              DATE OF BIRTH: <span>{items.birthdate}</span>
-            </p>
-            <p>
-              GENDER: <span>{items.gender}</span>
-            </p>
-            <p>
-              LICENSE NUMBER: <span>{items.licenseNo}</span>
-            </p>
-            <p>
-              ISSUED DATE: <span>{items.issuedDate}</span>
-            </p>
-            <p>
-              EXPIRY DATE: <span>{items.expiryDate}</span>
-            </p>
-            <p>
-              STATE OF ISSUE: <span>{items.stateOfIssue}</span>
-            </p>
+            <section>
+              <span className="field">FIRST NAME:</span>
+              <span>{items.firstname}</span>
+            </section>
+            <section>
+              <span className="field">LAST NAME:</span>
+              <span>{items.lastname}</span>
+            </section>
+            <section>
+              <span className="field">MIDDLE NAME:</span>
+              <span>{items.middlename}</span>
+            </section>
+            <section>
+              <span className="field">DATE OF BIRTH:</span>
+              <span>{items.birthdate}</span>
+            </section>
+            <section>
+              <span className="field">GENDER:</span>
+              <span>{items.gender}</span>
+            </section>
+            <section>
+              <span className="field">LICENSE NUMBER:</span>
+              <span>{items.licenseNo}</span>
+            </section>
+            <section>
+              <span className="field">ISSUE DATE:</span>
+              <span>{items.issuedDate}</span>
+            </section>
+            <section>
+              <span className="field">EXPIRY DATE:</span>
+              <span>{items.expiryDate}</span>
+            </section>
+            <section>
+              <span className="field"> STATE OF ISSUE:</span>
+              <span>{items.stateOfIssue}</span>
+            </section>
           </>
         ) : (
           <div>
