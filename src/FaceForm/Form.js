@@ -12,8 +12,8 @@ const Form = () => {
   const facialRecognitionTestKey =
     process.env.REACT_APP_FACIAL_RECOGNITION_TEST_KEY;
 
-  const [idType, setIdType] = useState(1);
-  const [idNumber, setIdNumber] = useState("");
+  const [idType, setIdType] = useState("nin");
+  const [idNumber, setIdNumber] = useState("10000000001");
   const [imageVerification, setImageVerification] = useState(false);
 
   const onChange = (e) => {
@@ -29,6 +29,7 @@ const Form = () => {
     console.log(photoUrl, 'photo: ', typeof(photoUrl));
     console.log("id type: ", typeof(idType), idType);
     console.log('id number: ', typeof(idNumber), idNumber);
+    console.log('test key', facialRecognitionTestKey);
 
     axios.post(
       url,
@@ -51,7 +52,7 @@ const Form = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Failed to Fetch Information");
+        toast.error(`${error.response.data.message}`);
       });
   };
 
