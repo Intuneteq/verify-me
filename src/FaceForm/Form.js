@@ -2,7 +2,9 @@ import React from "react";
 import Webcam from "react-webcam";
 import { useRef, useState } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import { BsFillPersonFill } from "react-icons/bs";
+import { TbFaceId } from "react-icons/tb";
 
 const Form = () => {
   const webRef = useRef(null);
@@ -10,22 +12,23 @@ const Form = () => {
   const facialRecognitionTestKey =
     process.env.REACT_APP_FACIAL_RECOGNITION_TEST_KEY;
 
-  const [idType, setIdType] = useState(0);
+  const [idType, setIdType] = useState(1);
   const [idNumber, setIdNumber] = useState("");
+  const [imageVerification, setImageVerification] = useState(false);
 
   const onChange = (e) => {
     setIdType(e.target.value);
   };
 
-  const verifyImage = (e) => {
-    e.preventDefault();
-    console.log("change", idType);
+  const verifyImage = async (e) => {
+      e.preventDefault();
 
-    const photoUrl = webRef.current.getScreenshot();
-    
-    console.log(photoUrl, 'photo', typeof(photoUrl));
-    console.log("id type", typeof(idType), idType);
-    console.log('id number', typeof(idNumber), idNumber);
+      const photoUrl = await webRef.current.getScreenshot();
+
+
+    console.log(photoUrl, 'photo: ', typeof(photoUrl));
+    console.log("id type: ", typeof(idType), idType);
+    console.log('id number: ', typeof(idNumber), idNumber);
 
     axios.post(
       url,
@@ -44,11 +47,11 @@ const Form = () => {
         console.log(res);
         // setItems(res.data.data);
         // setDataConfirmed(true);
-        // toast.success(`${firstname} ${lastname} verification successful`);
+        toast.success(`verification successful`);
       })
       .catch((error) => {
         console.log(error);
-        // toast.error("Failed to Fetch Information");
+        toast.error("Failed to Fetch Information");
       });
   };
 
@@ -80,7 +83,8 @@ const Form = () => {
           />
         </label>
       </form>
-      <Webcam ref={webRef} screenshotFormat="image/jpeg" />
+      {imageVerification && <Webcam ref={webRef} screenshotFormat="image/jpeg" />}
+      <TbFaceId onClick={()=>setImageVerification(true)} />
       <button onClick={verifyImage}>Verify Image</button>
     </div>
   );
