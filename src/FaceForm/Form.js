@@ -5,6 +5,10 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { BsFillPersonFill } from "react-icons/bs";
 import { TbFaceId } from "react-icons/tb";
+import {HiIdentification} from "react-icons/hi";
+
+import "./Form.scss";
+import illustration from "../Assets/illustrator.webp";
 
 const Form = () => {
   const webRef = useRef(null);
@@ -16,38 +20,32 @@ const Form = () => {
   const [idNumber, setIdNumber] = useState("10000000001");
   const [imageVerification, setImageVerification] = useState(false);
 
-  const onChange = (e) => {
-    setIdType(e.target.value);
-  };
-
   const verifyImage = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const photoUrl = await webRef.current.getScreenshot();
+    const photoUrl = await webRef.current.getScreenshot();
 
+    console.log(photoUrl, "photo: ", typeof photoUrl);
+    console.log("id type: ", typeof idType, idType);
+    console.log("id number: ", typeof idNumber, idNumber);
+    console.log("test key", facialRecognitionTestKey);
 
-    console.log(photoUrl, 'photo: ', typeof(photoUrl));
-    console.log("id type: ", typeof(idType), idType);
-    console.log('id number: ', typeof(idNumber), idNumber);
-    console.log('test key', facialRecognitionTestKey);
-
-    axios.post(
-      url,
-      {
-        idNumber,
-        idType,
-        photoUrl,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${facialRecognitionTestKey}`,
+    axios
+      .post(
+        url,
+        {
+          idNumber,
+          idType,
+          photoUrl,
         },
-      }
-    )
-    .then((res) => {
+        {
+          headers: {
+            Authorization: `Bearer ${facialRecognitionTestKey}`,
+          },
+        }
+      )
+      .then((res) => {
         console.log(res);
-        // setItems(res.data.data);
-        // setDataConfirmed(true);
         toast.success(`verification successful`);
       })
       .catch((error) => {
@@ -57,21 +55,40 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <h1>form</h1>
+    <div className="form-contain">
       <form>
-        <label>
-          <span>BVN</span>
-          <input type="radio" name="id" value="bvn" onChange={onChange} />
-        </label>
-        <label>
-          <span>NIN</span>
-          <input type="radio" name="id" value='nin' onChange={onChange} />
-        </label>
-        <label>
-          <span>FRSC</span>
-          <input type="radio" name="id" value='frsc' onChange={onChange} />
-        </label>
+        <h1>Facial Verification form</h1>
+        <div className="radio">
+          <span><HiIdentification /></span>
+          <label>
+            <span>BVN</span>
+            <input
+              type="radio"
+              name="id"
+              value="bvn"
+              onChange={(e) => setIdType(e.target.value)}
+            />
+          </label>
+          <label>
+            <span>NIN</span>
+            <input
+              type="radio"
+              name="id"
+              value="nin"
+              onChange={(e) => setIdType(e.target.value)}
+            />
+          </label>
+          <label>
+            <span>FRSC</span>
+            <input
+              type="radio"
+              name="id"
+              value="frsc"
+              onChange={(e) => setIdType(e.target.value)}
+            />
+          </label>
+        </div>
+        
         <label>
           <span>
             <BsFillPersonFill />
@@ -83,10 +100,36 @@ const Form = () => {
             onChange={(e) => setIdNumber(e.target.value)}
           />
         </label>
+        <div className="">
+          
+          
+        </div>
       </form>
-      {imageVerification && <Webcam ref={webRef} screenshotFormat="image/jpeg" />}
-      <TbFaceId onClick={()=>setImageVerification(true)} />
-      <button onClick={verifyImage}>Verify Image</button>
+      <div className={imageVerification ? "form-info" : "form-illustrator"}>
+        {imageVerification ? <>
+          
+          <Webcam
+            ref={webRef}
+            screenshotFormat="image/jpeg"
+            width={200}
+            height={200}
+          />
+          <input
+          type="submit"
+          value="Search"
+          className="search"
+          onClick={verifyImage}
+        />
+        
+        </> : 
+          (
+            <div>
+              <img src={illustration} alt="agentX" />
+              <TbFaceId onClick={() => setImageVerification(true)} />
+            </div>
+          )
+        }
+      </div>
     </div>
   );
 };
