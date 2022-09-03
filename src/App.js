@@ -14,8 +14,8 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/face-verification' element={<FormFace />} />
-          <Route path='/license-verification' element={<Form />} />
+          <Route path ="/license-verification" element={<Form />} />
+          <Route path ="/face-verification" element={<FormFace />} />
         </Routes>
       </div>
     </>

@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-// import { Link, useNavigate  } from "react-router-dom";
+import React from 'react';
+import { Link  } from "react-router-dom";
 
 const Home = () => {
-    // let navigate = useNavigate();
 
-    const [verification, setVerification] = useState('');
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // navigate('/face-verification');
-        
-    }
+    // const [verification, setVerification] = useState('');
+    // const [value, setValue] = useState('');
 
-
+    // const handleChange = (e) => {
+    //   setValue(e.target.value);
+    // };
     
   return (
     <div className='form-container home'>
         <h1>Choose Verification Action</h1>
-        <select id="verification">
-            <option value="PlateNumber" onChange={(e) => setVerification(e.target.value)}>Plate Number</option>
-            <option value="FaceVerification" onChange={(e) => setVerification(e.target.value)}>Face Verification</option>
+        {/* <select id="verification" value={value} onChange={handleChange} >
+            <option value="PlateNumber" >Plate Number</option>
+            <option value="FaceVerification" >Face Verification</option>
         </select>
-        
-        <input type="submit" value="Continue" onClick={handleSubmit}/>
+        <Link onClick={console.log(value, 'value')} to ={value === "PlateNumber" ? '/license-verification': '/face-verification'} >Continue</Link> */}
+        <Link to = '/face-verification'>Face Verification</Link>
+        <Link to= '/license-verification'>License Verification</Link>
     </div>
   )
   }
