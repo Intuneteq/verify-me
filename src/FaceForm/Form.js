@@ -13,11 +13,12 @@ import illustration from "../Assets/illustrator.webp";
 const Form = () => {
   const webRef = useRef(null);
   const url = "https://vapi.verifyme.ng/v1/verifications/identities/biometrics";
+  // const url = 'https://ivladmin-face-detection.p.rapidapi.com/faceSearch/detectFaces'
   const facialRecognitionTestKey =
     process.env.REACT_APP_FACIAL_RECOGNITION_TEST_KEY;
 
-    // const encodedParams = new URLSearchParams();
-    // encodedParams.append("objecturl", "http://er128.eyerecognize.com/img/jfd_group.jpg");
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("objecturl", "http://er128.eyerecognize.com/img/jfd_group.jpg");
 
   const [idType, setIdType] = useState("nin");
   const [idNumber, setIdNumber] = useState("10000000001");
@@ -36,6 +37,7 @@ const Form = () => {
     axios
       .post(
         url,
+        // {data: encodedParams},
         {
           idNumber,
           idType,
@@ -44,7 +46,9 @@ const Form = () => {
         {
           headers: {
             Authorization: `Bearer ${facialRecognitionTestKey}`,
-            'Content-Type': 'multipart/form-data',
+            'content-type': 'application/x-www-form-urlencoded',
+            // 'X-RapidAPI-Key': '77e41e52c9mshba4868f77b733eap196358jsn5e427740ca50',
+            // 'X-RapidAPI-Host': 'ivladmin-face-detection.p.rapidapi.com'
           },
         }
       )
@@ -62,7 +66,7 @@ const Form = () => {
     <div className="form-contain">
       <form>
         <h1>Face Verification form</h1>
-        <p>How Would You Like To be Verified ?</p>
+        <p>How Would You Like To be Verified?</p>
         <div className="radio">
           <span><HiIdentification /></span>
           <label>
