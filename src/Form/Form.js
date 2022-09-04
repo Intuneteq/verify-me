@@ -12,7 +12,7 @@ import illustration from "../Assets/illustrator.webp";
 import illustratehead from "../Assets/illustratehead.webp";
 
 const Form = () => {
-  const url = `https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001`
+  const url = `https://vapi.verifyme.ng/v1/verifications/identities/drivers_license/10000000001`;
   const testSecretKey = process.env.REACT_APP_TEST_SECRET_KEY;
 
   const [firstname, setFirstName] = useState("");
@@ -107,6 +107,7 @@ const Form = () => {
         </label>
 
         <input
+          id="submit"
           type="submit"
           value="Search"
           onClick={handleSubmit}

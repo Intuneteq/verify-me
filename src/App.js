@@ -11,13 +11,11 @@ function App() {
   return (
     <>
       <Toaster />
-      {/* <div> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path ="/license-verification" element={<Form />} />
-          <Route path ="/face-verification" element={<FormFace />} />
-        </Routes>
-      {/* </div> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/license-verification" element={<Form />} />
+        <Route path="/face-verification" element={<FormFace />} />
+      </Routes>
     </>
   );
 }

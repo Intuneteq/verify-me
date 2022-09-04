@@ -1,12 +1,11 @@
 .form-contain {
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   border-radius: 10px;
   max-width: 1200px;
-  margin: auto;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 
   form {
     flex: 1;
@@ -15,57 +14,60 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     width: 70%;
-    min-height: 570px;
+    max-height: 568px;
+    min-height: 568px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    border: 1px solid var(--primary-color);
+    position: relative;
 
     h1 {
+      text-align: center;
+      width: 100%;
+      font-weight: 500;
+      font-size: 2rem;
+      margin-bottom: 50px;
+
+      @media screen and (max-width: 500px) {
         text-align: center;
-        width: 100%;
-        font-weight: 500;
-        font-size: 2rem;
-        margin-bottom: 50px;
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+    }
 
-        @media screen and (max-width: 500px) {
-          text-align: center;
-          font-size: 25px;
-          margin-bottom: 20px;
+    label {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      span {
+        margin-right: 5px;
+
+        svg {
+          color: var(--primary-color);
         }
       }
 
-      label {
+      input {
+        border: none;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-        span {
-          margin-right: 5px;
+        padding: 10px;
+        outline: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-          svg {
-            color: var(--primary-color);
-          }
-        }
-
-        input {
-          border: none;
-          width: 100%;
-          padding: 10px;
-          outline: none;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-          &:focus {
-            border-bottom: 1px solid var(--primary-color);
-          }
+        &:focus {
+          border-bottom: 1px solid var(--primary-color);
         }
       }
+    }
 
-  @media screen and (max-width: 550px) {
-    width: 80%;
-    border-radius: 10px;
-  }
+    @media screen and (max-width: 550px) {
+      width: 80%;
+      border-radius: 10px;
+    }
   }
 
   @media screen and (max-width: 550px) {
@@ -75,61 +77,63 @@
     gap: 30px;
     width: 100%;
   }
-
 }
 
 .radio {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    span {
-        margin-right: 5px;
+  span {
+    margin-right: 5px;
 
-        svg {
-          color: var(--primary-color);
-        }
-      }
+    svg {
+      color: var(--primary-color);
+    }
+  }
 }
 
 .form-illustrator {
-    svg {
-        margin-top: 20px;
-        cursor: pointer;
-        height: 50px;
-        width: 50px;
-    }
+  svg {
+    margin-top: 20px;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+  }
 }
 
 .form-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    input[type="submit"] {
-        margin-top: 30px;
-        border: 1px solid;
-        border-radius: 8px;
+#submits {
+  margin-top: 30px;
+  border: 1px solid;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  right: 10%;
 
-        padding: 15px;
-        width: 100%;
-        background-color: var(--primary-color);
-        outline: none;
-        cursor: pointer;
+  padding: 15px;
+  width: 80%;
+  background-color: var(--primary-color);
+  outline: none;
+  cursor: pointer;
 
-        font-weight: 700;
-        color: black;
-        letter-spacing: 1px;
-        text-transform: uppercase;
+  font-weight: 700;
+  color: black;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 
-        &:hover {
-          background-color: var(--secondary-color);
-          color: white
-        }
+  &:hover {
+    color: white;
+  }
 
-        @media screen and (max-width: 550px) {
-          text-align: center;
-          padding: 20px;
-        }
-      }
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    padding: 20px;
+  }
 }
