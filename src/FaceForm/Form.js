@@ -68,42 +68,38 @@ const Form = () => {
   };
 
   return (
-    <div className="form-contain">
+    <div className="form-container-biometrics bg-success">
       <form>
-        <h1>Face Verification form</h1>
-        <p>How Would You Like To be Verified?</p>
-        <div className="radio">
-          <span>
-            <HiIdentification />
-          </span>
-          <label>
-            <span>BVN</span>
-            <input
-              type="radio"
-              name="id"
-              value="bvn"
-              onChange={(e) => setIdType(e.target.value)}
-            />
-          </label>
-          <label>
-            <span>NIN</span>
-            <input
-              type="radio"
-              name="id"
-              value="nin"
-              onChange={(e) => setIdType(e.target.value)}
-            />
-          </label>
-          <label>
-            <span>FRSC</span>
-            <input
-              type="radio"
-              name="id"
-              value="frsc"
-              onChange={(e) => setIdType(e.target.value)}
-            />
-          </label>
+        <div className="text-center">
+          <h2 className="fw-bold">Face matching and verification</h2>
+          <p>How Would You Like To be Verified?</p>
         </div>
+        <fieldset class="form-group d-flex gap-5">
+          <div class="form-check">
+            <input id="bvn" name="id"
+              value="bvn"
+              onChange={(e) => setIdType(e.target.value)} class="form-check-input" type="radio" />
+            <label class="form-check-label" for="bvn">
+              BVN
+            </label>
+          </div>
+          <div class="form-check">
+            <input id="nin" class="form-check-input" type="radio" name="id"
+              value="nin"
+              onChange={(e) => setIdType(e.target.value)} />
+            <label class="form-check-label" for="nin">
+              NIN
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input id="frsc" class="form-check-input" type="radio" name="id"
+              value="frsc"
+              onChange={(e) => setIdType(e.target.value)} />
+            <label class="form-check-label" for="frsc">
+              FRSC
+            </label>
+          </div>
+        </fieldset>
 
         <label>
           <span>
@@ -116,29 +112,27 @@ const Form = () => {
             onChange={(e) => setIdNumber(e.target.value)}
           />
         </label>
-        <div className="radio">
-          <span>
-            <HiIdentification />
-          </span>
-          <label>
-            <span>Upload Image</span>
-            <input
-              type="radio"
+
+        <fieldset class="form-group d-flex gap-3">
+          <div class="form-check">
+            <input id="uli"
+              class="form-check-input"
               name="image"
               value="photo"
-              onChange={(e) => setPhotoData(e.target.value)}
-            />
-          </label>
-          <label>
-            <span>Take Pic</span>
-            <input
-              type="radio"
-              name="image"
+              onChange={(e) => setPhotoData(e.target.value)} type="radio" />
+            <label class="form-check-label" for="uli">
+              Upload Image
+            </label>
+          </div>
+          <div class="form-check">
+            <input id="tp" class="form-check-input" type="radio" name="image"
               value="photoUrl"
-              onChange={(e) => setPhotoData(e.target.value)}
-            />
-          </label>
-        </div>
+              onChange={(e) => setPhotoData(e.target.value)} />
+            <label class="form-check-label" for="tp">
+              Take Picture
+            </label>
+          </div>
+        </fieldset>
         {photo && (
           <div>
             <img
@@ -151,22 +145,10 @@ const Form = () => {
             <button onClick={() => setPhoto(null)}>Remove</button>
           </div>
         )}
-        {photoData === "photo" && (
-          <input
-            type="file"
-            name="myImage"
-            accept="image/jpg"
-            onChange={(event) => {
-              console.log(event.target.files[0]);
-              setPhoto(event.target.files[0]);
-            }}
-          />
-        )}
         <input
-          id="submits"
           type="submit"
           value="Search"
-          className="search"
+          class="btn btn-outline-success d-block w-100"
           onClick={verifyImage}
         />
       </form>
@@ -181,11 +163,27 @@ const Form = () => {
             />
           </>
         ) : (
-          <div>
+          <div className="img-box">
             <img src={illustration} alt="agentX" />
-            {photoData === "photoUrl" && (
+            {photoData === "photoUrl" ? (
               <TbFaceId onClick={() => setImageVerification(true)} />
-            )}
+            ) :
+              <button onClick={() => { document.getElementById('fileInput').click() }} className="btn img-btn bg-transparent text-light">
+                Select Image
+                <input
+                  id="fileInput"
+                  className="text-dark d-none"
+                  type="file"
+                  name="myImage"
+                  accept="image/jpg"
+                  onChange={(event) => {
+                    console.log(event.target.files[0]);
+                    setPhoto(event.target.files[0]);
+                  }}
+                />
+              </button>
+
+            }
           </div>
         )}
       </div>

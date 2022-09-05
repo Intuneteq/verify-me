@@ -9,24 +9,29 @@ const Home = () => {
   };
 
   return (
-    <div className="form-container home">
-      <h1>Choose Verification Action</h1>
-      <select id="verification" onChange={handleSelectChange}>
-        <option value="PlateNumber">Plate Number</option>
-        <option value="FaceVerification">Face Verification</option>
-      </select>
+    <div className="home">
+      <h1 className="fw-bold">Choose Verification Action</h1>
+      <div class="form-group">
+        <select multiple="" class="form-select" id="verification" onChange={handleSelectChange}>
+          <option value="DriversLicense">Driver License owner data</option>
+          <option value="FaceVerification">Vehicle plate number owners details</option>
+          <option value="FaceVerification">Face matching and verification</option>
+        </select>
+      </div>
 
       <Link
-        className="nav"
         to={
           verification === "PlateNumber"
             ? "/license-verification"
             : verification === "FaceVerification"
-            ? "/face-verification"
-            : "/"
+              ? "/face-verification"
+              : "/plate-number-verification"
         }
       >
-        Continue
+        <button type="button" class="btn btn-outline-success">
+          Continue
+        </button>
+
       </Link>
     </div>
   );
