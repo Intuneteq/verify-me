@@ -52,9 +52,9 @@ const Form = () => {
   };
 
   return (
-    <div className="form-container">
+    <section className="form-container bg-success">
       <form>
-        <h1>Verify Your License</h1>
+        <h1 className="fw-bold">Driver License owner data</h1>
         <p>Enter your Credentials to Verify your License</p>
 
         <label>
@@ -107,15 +107,15 @@ const Form = () => {
         </label>
 
         <input
-          id="submit"
+          // id="submit"
           type="submit"
           value="Search"
           onClick={handleSubmit}
-          className="search"
+          className="btn btn-outline-success w-100 mt-5"
         />
       </form>
 
-      <div className={dataConfirmed ? "form-info" : "form-illustrator"}>
+      <section className={dataConfirmed ? "form-info" : "form-illustrator"}>
         {dataConfirmed ? (
           <>
             <div>
@@ -159,13 +159,13 @@ const Form = () => {
             </section>
           </>
         ) : (
-          <div>
+          <div className="img-box">
             <img src={illustration} alt="agentX" />
-            <h1>Fill Form to get user Info</h1>
+            <h3 className="fw-bold">Fill Form to get user Info</h3>
           </div>
         )}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
